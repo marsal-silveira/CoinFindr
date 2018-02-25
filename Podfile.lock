@@ -28,8 +28,8 @@ PODS:
 DEPENDENCIES:
   - Moya-ObjectMapper/RxSwift
   - R.swift
-  - RxCocoa (~> 4)
-  - RxSwift (~> 4)
+  - RxCocoa
+  - RxSwift
   - SwiftLint
 
 SPEC CHECKSUMS:
@@ -44,6 +44,6 @@ SPEC CHECKSUMS:
   RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
   SwiftLint: 2aa21b96c8d13396a051bc1cb659d2ce1e0075b0
 
-PODFILE CHECKSUM: c55c85094261bed5705dabc271d6727d2b13cdb8
+PODFILE CHECKSUM: 1c2f7ab4722c4462cb8265f641a9732e0aa45688
 
 COCOAPODS: 1.4.0
