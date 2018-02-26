@@ -6,6 +6,9 @@ target 'CoinFindr' do
     
   #Localizable
   pod 'R.swift'
+  
+  #Layout
+  pod 'Cartography'
 
   #Lint
   pod 'SwiftLint'
@@ -19,6 +22,7 @@ target 'CoinFindr' do
     
   swift4 = [
     'R.swift',
+    'Cartography',
     'Rswift',
     'RxSwift',
     'RxCocoa',
