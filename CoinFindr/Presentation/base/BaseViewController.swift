@@ -10,12 +10,6 @@ import UIKit
 import Cartography
 import RxSwift
 
-protocol Placeholder {
-    
-    func present(on parent: UIView)
-    func dismiss()
-}
-
 class BaseViewController: UIViewController {
     
     // ************************************************

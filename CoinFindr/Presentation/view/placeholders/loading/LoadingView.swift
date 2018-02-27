@@ -24,10 +24,10 @@ class LoadingView: NibDesignable {
         self.titleLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         self.titleLabel.textColor = UIColor.customBlue
         
-        self.alpha = 0.0
-        self.loadingImageCenterYConstraint.constant = -self.frame.size.height
-        self.loadingImage.alpha = 0.0
-        self.titleLabel.alpha = 0.0
+//        self.alpha = 0.0
+//        self.loadingImageCenterYConstraint.constant = -self.frame.size.height
+//        self.loadingImage.alpha = 0.0
+//        self.titleLabel.alpha = 0.0
     }
     
     required public init?(coder aDecoder: NSCoder) {

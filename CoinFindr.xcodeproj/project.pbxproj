@@ -34,6 +34,7 @@
 		57B4A6622043B465009BD7F8 /* PresentationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B4A65B2043B465009BD7F8 /* PresentationHelper.swift */; };
 		57B4A6A42043CB77009BD7F8 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B4A6A32043CB77009BD7F8 /* BaseRouter.swift */; };
 		70F85B3D287BDB66B9859644 /* Pods_CoinFindrUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 951105E9939BDE8940F19136 /* Pods_CoinFindrUITests.framework */; };
+		8B4660582045CE4B003C360F /* PlaceholderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4660572045CE4B003C360F /* PlaceholderProtocol.swift */; };
 		8B7F57A5204583D1003F7D16 /* NibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F57A4204583D1003F7D16 /* NibDesignable.swift */; };
 		8B7F57A820458509003F7D16 /* CustomTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F57A720458508003F7D16 /* CustomTypes.swift */; };
 		8B7F57AA20458653003F7D16 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F57A920458653003F7D16 /* UIColor+.swift */; };
@@ -107,6 +108,7 @@
 		57B4A65B2043B465009BD7F8 /* PresentationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationHelper.swift; sourceTree = "<group>"; };
 		57B4A6A32043CB77009BD7F8 /* BaseRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		6D6219680EFDFDECC8DCB202 /* Pods-CoinFindr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinFindr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoinFindr/Pods-CoinFindr.debug.xcconfig"; sourceTree = "<group>"; };
+		8B4660572045CE4B003C360F /* PlaceholderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderProtocol.swift; sourceTree = "<group>"; };
 		8B7F57A4204583D1003F7D16 /* NibDesignable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibDesignable.swift; sourceTree = "<group>"; };
 		8B7F57A720458508003F7D16 /* CustomTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTypes.swift; sourceTree = "<group>"; };
 		8B7F57A920458653003F7D16 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
@@ -438,6 +440,7 @@
 				8B7F57C32045AD7D003F7D16 /* PlaceholderViewModel.swift */,
 				8B7F57C02045AD7D003F7D16 /* loading */,
 				8B7F57C42045AD7D003F7D16 /* error */,
+				8B4660572045CE4B003C360F /* PlaceholderProtocol.swift */,
 			);
 			name = placeholders;
 			path = CoinFindr/Presentation/view/placeholders;
@@ -862,6 +865,7 @@
 				8B7F57CB2045AD7E003F7D16 /* LoadingView.swift in Sources */,
 				570E2BB120451DBF004FBB7C /* ClienteAPIOperations.swift in Sources */,
 				570E2BA820451A30004FBB7C /* CoinAPI.swift in Sources */,
+				8B4660582045CE4B003C360F /* PlaceholderProtocol.swift in Sources */,
 				57B4A6422043B109009BD7F8 /* ContainerPresenter.swift in Sources */,
 				57B4A61E20420A82009BD7F8 /* R.generated.swift in Sources */,
 				57B4A6562043B3B2009BD7F8 /* ContainerRouter.swift in Sources */,
