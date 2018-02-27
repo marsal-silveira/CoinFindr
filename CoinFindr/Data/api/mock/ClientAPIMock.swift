@@ -12,8 +12,7 @@ import ObjectMapper
 
 class CoinMarketCapAPIClientMock: CoinMarketCapAPIProtocol {
     
-    func tickers(limit: Int) {
-        print("CoinMarketCapAPIClientMock -> tickers")
-        // do nothing...
+    func coins(limit: Int) -> Single<[CoinAPI]> {
+        return Single.error(APIError.error(description: "¯\\_(ツ)_/¯\nNot implemented"))
     }
 }

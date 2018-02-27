@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoadingView" customModule="CoinFindr" customModuleProvider="target">
+            <connections>
+                <outlet property="loadingImage" destination="CAR-3V-sgO" id="lCT-83-rCE"/>
+                <outlet property="loadingImageCenterYConstraint" destination="sfL-gO-2Cw" id="2cf-Js-QUH"/>
+                <outlet property="titleLabel" destination="X3L-dR-MyC" id="7l1-Zu-n2f"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="unM-73-LZf">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading" translatesAutoresizingMaskIntoConstraints="NO" id="CAR-3V-sgO">
+                    <rect key="frame" x="130" y="239" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="CAR-3V-sgO" secondAttribute="height" id="2Vo-0T-oP9"/>
+                        <constraint firstAttribute="width" constant="60" id="9QS-Jn-Jpj"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X3L-dR-MyC">
+                    <rect key="frame" x="125" y="315" width="71" height="18"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                    <color key="textColor" red="0.10588235294117647" green="0.47843137254901957" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="CAR-3V-sgO" firstAttribute="centerX" secondItem="unM-73-LZf" secondAttribute="centerX" id="6sB-6S-1gw"/>
+                <constraint firstItem="X3L-dR-MyC" firstAttribute="centerX" secondItem="unM-73-LZf" secondAttribute="centerX" id="gSR-Mg-vBC"/>
+                <constraint firstItem="CAR-3V-sgO" firstAttribute="centerY" secondItem="unM-73-LZf" secondAttribute="centerY" constant="-15" id="sfL-gO-2Cw"/>
+                <constraint firstItem="X3L-dR-MyC" firstAttribute="top" secondItem="CAR-3V-sgO" secondAttribute="bottom" constant="16" id="z6H-sD-rQF"/>
+            </constraints>
+            <point key="canvasLocation" x="-171" y="54"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="loading" width="75" height="75"/>
+    </resources>
+</document>

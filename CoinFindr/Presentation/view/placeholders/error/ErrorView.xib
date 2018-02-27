@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ErrorView" customModule="CoinFindr" customModuleProvider="target">
+            <connections>
+                <outlet property="closeButton" destination="r0P-wH-6SH" id="JNu-re-KMh"/>
+                <outlet property="detailsLabel" destination="VEG-OW-ks8" id="eIz-V4-hq8"/>
+                <outlet property="errorImage" destination="CAR-3V-sgO" id="rdU-vS-GOB"/>
+                <outlet property="titleLabel" destination="l49-zT-KKx" id="TWB-yN-nHQ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="unM-73-LZf">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fail" translatesAutoresizingMaskIntoConstraints="NO" id="CAR-3V-sgO">
+                    <rect key="frame" x="110" y="159" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="CAR-3V-sgO" secondAttribute="height" id="2Vo-0T-oP9"/>
+                        <constraint firstAttribute="width" constant="100" id="9QS-Jn-Jpj"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Falha na Sincronização" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l49-zT-KKx">
+                    <rect key="frame" x="32" y="275" width="256" height="18"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Erro 500: não foi possível conectar com o servidor." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VEG-OW-ks8">
+                    <rect key="frame" x="32" y="309" width="256" height="33.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r0P-wH-6SH">
+                    <rect key="frame" x="110" y="504" width="100" height="32"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="3RK-vu-EQq"/>
+                        <constraint firstAttribute="width" constant="100" id="YKX-qL-oGb"/>
+                    </constraints>
+                    <state key="normal" title="Fechar">
+                        <color key="titleColor" red="0.92941176470588238" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.92941176470588238" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="VEG-OW-ks8" firstAttribute="top" secondItem="l49-zT-KKx" secondAttribute="bottom" constant="16" id="3GK-Kc-sN6"/>
+                <constraint firstAttribute="trailing" secondItem="l49-zT-KKx" secondAttribute="trailing" constant="32" id="5C0-Cy-d38"/>
+                <constraint firstItem="CAR-3V-sgO" firstAttribute="centerX" secondItem="unM-73-LZf" secondAttribute="centerX" id="6sB-6S-1gw"/>
+                <constraint firstAttribute="bottom" secondItem="r0P-wH-6SH" secondAttribute="bottom" constant="32" id="7Xw-iK-Yle"/>
+                <constraint firstItem="VEG-OW-ks8" firstAttribute="centerX" secondItem="unM-73-LZf" secondAttribute="centerX" id="8ST-yY-zD9"/>
+                <constraint firstItem="r0P-wH-6SH" firstAttribute="centerX" secondItem="unM-73-LZf" secondAttribute="centerX" id="Kn6-uy-1dD"/>
+                <constraint firstItem="l49-zT-KKx" firstAttribute="centerY" secondItem="unM-73-LZf" secondAttribute="centerY" id="NHp-4v-luy"/>
+                <constraint firstItem="l49-zT-KKx" firstAttribute="leading" secondItem="unM-73-LZf" secondAttribute="leading" constant="32" id="QoQ-0k-3O7"/>
+                <constraint firstAttribute="trailing" secondItem="VEG-OW-ks8" secondAttribute="trailing" constant="32" id="RJI-33-gge"/>
+                <constraint firstItem="l49-zT-KKx" firstAttribute="top" secondItem="CAR-3V-sgO" secondAttribute="bottom" constant="16" id="cZS-iW-heV"/>
+                <constraint firstItem="VEG-OW-ks8" firstAttribute="leading" secondItem="unM-73-LZf" secondAttribute="leading" constant="32" id="wj0-r9-nzS"/>
+                <constraint firstItem="l49-zT-KKx" firstAttribute="centerX" secondItem="unM-73-LZf" secondAttribute="centerX" id="xV2-rG-vap"/>
+            </constraints>
+            <point key="canvasLocation" x="-171" y="54"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="fail" width="100" height="100"/>
+    </resources>
+</document>

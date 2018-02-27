@@ -9,7 +9,7 @@
 import UIKit
 
 enum ContentScreen {
-    case main
+    case topCoins
 }
 
 protocol ContainerRouterProtocol: class {
@@ -37,8 +37,8 @@ class ContainerRouter: BaseRouter {
         window.rootViewController = _viewController
         window.makeKeyAndVisible()
         
-        // TODO: fixed because we have only one possible screen... if we have a session we can change the VC in show automatically using this behavior
-        self.updateCurrentScreen(.main)
+        // fixed because we have only one possible screen... if we have a session we can change the VC in show automatically using this behavior
+        self.updateCurrentScreen(.topCoins)
     }
 }
 
@@ -49,10 +49,10 @@ extension ContainerRouter: ContainerRouterProtocol {
         guard screen != _currentScreen else { return }
         switch screen {
 
-        case .main:
-            let mainRouter = MainRouter()
-            _viewController.setCurrentViewController(mainRouter.viewController)
-            _childWireFrame = mainRouter
+        case .topCoins:
+            let topCoinsRouter = TopCoinsRouter()
+            _viewController.setCurrentViewController(topCoinsRouter.viewController)
+            _childWireFrame = topCoinsRouter
         }
         
         _currentScreen = screen

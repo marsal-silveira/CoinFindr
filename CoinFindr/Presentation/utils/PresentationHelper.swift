@@ -11,12 +11,12 @@ import UIKit
 class PresentationHelper {
 
     static func topViewController() -> UIViewController? {
+        
         guard var topController = UIApplication.shared.keyWindow?.rootViewController else { return nil }
-
+        
         while let presentedViewController = topController.presentedViewController {
             topController = presentedViewController
         }
-        
         return topController
     }
 
