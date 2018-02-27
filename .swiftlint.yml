@@ -14,7 +14,6 @@ disabled_rules:
   - colon
   - void_return
   - unused_closure_parameter
-  - todo
 
 opt_in_rules: # some rules are only opt-in
   - force_https

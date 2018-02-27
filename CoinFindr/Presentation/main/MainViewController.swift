@@ -18,6 +18,7 @@ class MainViewController: BaseViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.red
+        presenter.viewDidAppear()
     }
     
     override func bind() {

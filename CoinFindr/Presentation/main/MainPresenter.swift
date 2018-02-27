@@ -10,16 +10,18 @@ import UIKit
 import RxSwift
 
 protocol MainInteractorProtocol: class {
-    
+
 }
 
 class MainInteractor: MainInteractorProtocol {
-    
+
 }
 
 protocol MainPresenterProtocol: BasePresenterProtocol {
 
     var router: MainRouterProtocol? { get set }
+
+    func viewDidAppear()
 }
 
 class MainPresenter: BasePresenter {
@@ -49,4 +51,11 @@ class MainPresenter: BasePresenter {
 
 extension MainPresenter: MainPresenterProtocol {
     
+    func viewDidAppear() {
+
+        // TODO: fetch data from server...
+//        let clientApi = CoinMarketCapAPIClient()
+        let clientApi = CoinMarketCapAPIClientMock()
+        clientApi.tickers(limit: 10)
+    }
 }

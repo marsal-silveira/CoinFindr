@@ -11,7 +11,6 @@ import RxCocoa
 
 protocol MainRouterProtocol: class {
 
-    func viewDidAppear()
 }
 
 class MainRouter: BaseRouter {
@@ -36,8 +35,4 @@ class MainRouter: BaseRouter {
 
 extension MainRouter: MainRouterProtocol {
     
-    func viewDidAppear() {
-     
-        // TODO: fetch data from server...
-    }
 }
