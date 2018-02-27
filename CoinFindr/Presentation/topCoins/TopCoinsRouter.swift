@@ -1,5 +1,5 @@
 //
-//  CoinsRouter.swift
+//  TopCoinsRouter.swift
 //  CoinFindr
 //
 //  Created by Marsal Silveira.
@@ -9,15 +9,15 @@
 import UIKit
 import RxCocoa
 
-protocol CoinsRouterProtocol: class {
+protocol TopCoinsRouterProtocol: class {
 
 }
 
-class CoinsRouter: BaseRouter {
+class TopCoinsRouter: BaseRouter {
     
     private let _navigationController: UINavigationController
-    private let _viewController: CoinsViewController
-    private var _presenter: CoinsPresenterProtocol
+    private let _viewController: TopCoinsViewController
+    private var _presenter: TopCoinsPresenterProtocol
     
     var viewController: UIViewController {
         return _navigationController
@@ -25,9 +25,9 @@ class CoinsRouter: BaseRouter {
     
     override init() {
         
-        let interactor = CoinsInteractor(repository: CoinsRepository(apiClient: CoinMarketCapAPI()))
-        _presenter = CoinsPresenter(interactor: interactor)
-        _viewController = CoinsViewController(presenter: _presenter)
+        let interactor = TopCoinsInteractor(repository: CoinRepository(apiClient: CoinMarketCapAPI()))
+        _presenter = TopCoinsPresenter(interactor: interactor)
+        _viewController = TopCoinsViewController(presenter: _presenter)
         _navigationController = BaseNavigationController(rootViewController: _viewController)
         
         super.init()
@@ -50,6 +50,6 @@ class CoinsRouter: BaseRouter {
     }
 }
 
-extension CoinsRouter: CoinsRouterProtocol {
+extension TopCoinsRouter: TopCoinsRouterProtocol {
     
 }

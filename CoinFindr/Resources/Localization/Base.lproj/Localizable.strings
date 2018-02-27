@@ -6,5 +6,24 @@
   Copyright © 2018 Marsal Silveira. All rights reserved.
 */
 
-//Placeholder
+// Error
+"error.default" = "Oops... something went wrong";
+"error.network" = "Could not connect with network, please try again";
+"error.parse.json" = "Could not parse data...";
+
+// Default
+"default.try.again" = "Try Again";
+"default.ok" = "OK";
+"default.cancel" = "Cancel";
+"default.yes" = "Yes";
+"default.no" = "No";
+"default.close" = "Close";
+
+// Placeholder
 "placeholder.loading" = "Loading...";
+"placeholder.loading.error" = "Something wrong here...";
+
+// Top Coins
+"top.coins.title" = "Top Coins";
+"top.coins.cell.price.usd" = "Price (USD)";
+"top.coins.cell.price.btc" = "Price (BTC)";

@@ -1,5 +1,5 @@
 //
-//  CoinsInteractor.swift
+//  TopCoinsInteractor.swift
 //  CoinFindr
 //
 //  Created by Marsal Silveira.
@@ -9,27 +9,27 @@
 import Foundation
 import RxSwift
 
-protocol CoinsInteractorProtocol {
+protocol TopCoinsInteractorProtocol {
     
     var topCoins: Observable<RequestResponse<[Coin]>> { get }
     func getTopCoins()
 }
 
-class CoinsInteractor: BaseInteractor {
+class TopCoinsInteractor: BaseInteractor {
     
-    private let _repository: CoinsRepositoryProtocol
+    private let _repository: CoinRepositoryProtocol
     private var _disposeBag = DisposeBag()
     
     private let _topCoinsVariable = Variable<RequestResponse<[Coin]>>(.new)
     
-    init(repository: CoinsRepositoryProtocol) {
+    init(repository: CoinRepositoryProtocol) {
         
         _repository = repository
         super.init()
     }
 }
 
-extension CoinsInteractor: CoinsInteractorProtocol {
+extension TopCoinsInteractor: TopCoinsInteractorProtocol {
     
     var topCoins: Observable<RequestResponse<[Coin]>> {
         return _topCoinsVariable.asObservable()

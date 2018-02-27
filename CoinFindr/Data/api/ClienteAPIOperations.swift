@@ -32,9 +32,7 @@ extension Data {
     var asJSON: Result<[String: Any], NSError> {
         do {
             guard let JSONDict = try JSONSerialization.jsonObject(with: self, options: []) as? [String: Any] else {
-//                return Result.failure(APIError.error(description: R.string.localizable.errorParseJson()) as NSError)
-                // TODO: check this
-                return Result.failure(APIError.error(description: "Error parsing json") as NSError)
+                return Result.failure(APIError.error(description: Strings.errorParseJson()) as NSError)
             }
             return Result.success(JSONDict)
         } catch let error as NSError {
@@ -60,8 +58,7 @@ extension PrimitiveSequence where TraitType == SingleTrait, ElementType == Respo
 //                    if let errorAPI = Mapper<ErrorAPI>().map(JSON: JSONDict) {
 //                        return Single.error(APIError.error(description: errorAPI.localizedDescription))
 //                    } else {
-//                        return Single.error(APIError.error(description: R.string.localizable.errorParseJson()))
-                    return Single.error(APIError.error(description: "Error parsing json"))
+                    return Single.error(APIError.error(description: Strings.errorParseJson()))
 //                    }
                 case .failure(let error):
                     return Single.error(error)

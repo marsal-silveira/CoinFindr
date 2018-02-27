@@ -13,28 +13,13 @@ class BaseNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.replaceBackButton()
+        
+        self.navigationBar.barTintColor = UIColor.customBlue
+        self.navigationBar.tintColor = UIColor.white
+        self.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
-    }
-    
-    private func transparentNavigation() {
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationBar.shadowImage = UIImage()
-        navigationBar.isTranslucent = true
-        navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
-        view.backgroundColor = .clear
-    }
-    
-    private func replaceBackButton() {
-        navigationBar.tintColor = .white
-//        navigationBar.backIndicatorImage = #imageLiteral(resourceName: "ic_nav_back")
-//        navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "ic_nav_back")
-    }
-    
-    override var shouldAutorotate: Bool {
-        return false
     }
 }

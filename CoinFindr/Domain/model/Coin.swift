@@ -26,7 +26,7 @@ extension Coin {
               let rank = coinAPI.rank else {
             return nil
         }
-        return Coin(id: id, name: name, symbol: symbol, rank: rank)
+        return Coin(id: id, name: name, symbol: symbol, rank: "#\(rank)")
     }
     
     static func mapArray(coinsAPI: [CoinAPI]) -> [Coin] {

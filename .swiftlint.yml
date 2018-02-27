@@ -14,6 +14,8 @@ disabled_rules:
   - colon
   - void_return
   - unused_closure_parameter
+  - closure_parameter_position
+  - statement_position
 
 opt_in_rules: # some rules are only opt-in
   - force_https

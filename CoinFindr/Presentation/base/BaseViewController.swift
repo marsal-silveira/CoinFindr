@@ -10,21 +10,37 @@ import UIKit
 import Cartography
 import RxSwift
 
+protocol Placeholder {
+    
+    func present(on parent: UIView)
+    func dismiss()
+}
+
 class BaseViewController: UIViewController {
     
-    internal let basePresenter: BasePresenterProtocol
-    internal var disposeBag: DisposeBag!
+    // ************************************************
+    // MARK: Properties
+    // ************************************************
     
-    private var backgroundImageView: UIImageView?
-    private var placeholderView: UIView?
+    private let _basePresenter: BasePresenterProtocol
+    internal var basePresenter: BasePresenterProtocol { return _basePresenter }
+    
+    private var _disposeBag: DisposeBag = DisposeBag()
+    internal var disposeBag: DisposeBag { return _disposeBag }
+    
+    private var _placeholder: Placeholder?
+    
+    // ************************************************
+    // MARK: Init | Lifecycle
+    // ************************************************
     
     init(presenter: BasePresenterProtocol, nibName: String?) {
-        basePresenter = presenter
+        _basePresenter = presenter
         super.init(nibName: nibName, bundle: nil)
     }
     
     init(presenter: BasePresenterProtocol) {
-        basePresenter = presenter
+        _basePresenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -34,129 +50,87 @@ class BaseViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
+
         view.backgroundColor = .white
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        removeBackButtonTitle()
-        bind()
+
+        self.setupOnLoad()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
-    }
-    
-    override var shouldAutorotate: Bool {
-         return false
-    }
-    
     deinit {
         print("dealloc ---> \(String(describing: type(of: self)))")
     }
     
+    // ************************************************
+    // MARK: Setup
+    // ************************************************
+    
+    private func setupOnLoad() {
+    
+        self.bind()
+    }
+    
     internal func bind() {
-        disposeBag = DisposeBag()
-        
-        basePresenter.viewState
+
+        _basePresenter.viewState
             .bind {[weak self] (state) in
                 guard let strongSelf = self else { return }
                 switch state {
                     
                 case .normal:
-                    strongSelf.removePlaceholder()
+                    strongSelf.dismissPlaceholder()
                     
                 case .failure(let viewModel):
-                    strongSelf.showPlaceholderWith(viewModel: viewModel, type: .error)
+                    strongSelf.presentPlaceholder(with: viewModel, type: .error)
                     
                 case .loading(let viewModel):
-                    strongSelf.showPlaceholderWith(viewModel: viewModel, type: .loading)
-                    
+                    strongSelf.presentPlaceholder(with: viewModel, type: .loading)
                 }
             }
             .disposed(by: disposeBag)
     }
-}
+    
+    // ************************************************
+    // MARK: Placeholders
+    // ************************************************
 
-extension BaseViewController {
-    
-    internal func addBackgroundImage(_ image: UIImage, withBlurEffect: Bool = false) {
-        backgroundImageView?.removeFromSuperview()
-        backgroundImageView = UIImageView(image: image)
-        backgroundImageView?.contentMode = .scaleAspectFill
-        view.addSubview(backgroundImageView!)
-        view.sendSubview(toBack: backgroundImageView!)
-        constrain(view, backgroundImageView!) { (container, image) in
-            image.edges == container.edges
-        }
-        
-        if withBlurEffect {
-            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark) //extraLight, light, dark
-            let blurEffectView = UIVisualEffectView(effect: blurEffect)
-            blurEffectView.frame = backgroundImageView!.bounds
-            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            backgroundImageView!.addSubview(blurEffectView)
-        }
-    }
-}
-
-extension BaseViewController {
-    
-    private func removeBackButtonTitle() {
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-    }
-    
-    internal func addBackButtonModalFlow(onClose: @escaping (() -> Void)) {
-        let backButton = UIBarButtonItem(barButtonSystemItem: .stop, target: nil, action: nil)
-        _ = backButton.rx.tap
-            .takeUntil(rx.deallocated)
-            .bind { onClose() }
-        navigationItem.leftBarButtonItem = backButton
-    }
-}
-
-extension BaseViewController {
-    
-    private func removePlaceholder() {
-        placeholderView?.removeFromSuperview()
-    }
-    
-    private func showPlaceholderWith(viewModel: PlaceholderViewModel, type: PlaceholderType) {
+    private func presentPlaceholder(with viewModel: PlaceholderViewModel, type: PlaceholderType) {
         view.endEditing(true)
         
         switch type {
         case .loading:
-            showLoading(viewModel: viewModel)
+            self.showLoading(viewModel: viewModel)
             
         case .error:
-            showError(viewModel: viewModel)
+            self.showError(viewModel: viewModel)
         }
     }
     
+    private func dismissPlaceholder() {
+        _placeholder?.dismiss()
+        _placeholder = nil
+    }
+
     private func showLoading(viewModel: PlaceholderViewModel) {
-        removePlaceholder()
+        self.dismissPlaceholder()
         
-        let loadingView = LoadingView()
-        loadingView.presentOn(parentView: self.view, with: viewModel)
-        self.placeholderView = loadingView
+        let loadingView = LoadingView(viewModel: viewModel)
+        loadingView.present(on: self.view)
+        _placeholder = loadingView
     }
     
     private func showError(viewModel: PlaceholderViewModel) {
-        removePlaceholder()
+        dismissPlaceholder()
         
-        let errorView = ErrorView()
-        errorView.presentOn(parentView: self.view, with: viewModel)
-        self.placeholderView = errorView
-    }
-}
-
-extension BaseViewController {
-    
-    internal func setOrientation(_ orientation: UIInterfaceOrientation) {
-        UIDevice.current.setValue(orientation.rawValue, forKey: "orientation")
+        let errorView = ErrorView(viewModel: viewModel)
+        errorView.present(on: self.view)
+        _placeholder = errorView
     }
 }

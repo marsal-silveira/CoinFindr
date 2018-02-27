@@ -1,5 +1,5 @@
 //
-//  CoinsPresenter.swift
+//  TopCoinsPresenter.swift
 //  CoinFindr
 //
 //  Created by Marsal Silveira.
@@ -9,28 +9,28 @@
 import UIKit
 import RxSwift
 
-protocol CoinsPresenterProtocol: BasePresenterProtocol {
+protocol TopCoinsPresenterProtocol: BasePresenterProtocol {
 
-    var router: CoinsRouterProtocol? { get set }
+    var router: TopCoinsRouterProtocol? { get set }
     var coins: Observable<[Coin]> { get }
     
     func getCoins()
 }
 
-class CoinsPresenter: BasePresenter {
+class TopCoinsPresenter: BasePresenter {
     
-    private let _interactor: CoinsInteractorProtocol
+    private let _interactor: TopCoinsInteractorProtocol
     private let _disposeBag = DisposeBag()
     
     private var _coinsVariable = Variable<[Coin]>([])
 
-    private weak var _router: CoinsRouterProtocol?
-    public var router: CoinsRouterProtocol? {
+    private weak var _router: TopCoinsRouterProtocol?
+    public var router: TopCoinsRouterProtocol? {
         get { return _router }
         set { _router = newValue }
     }
     
-    init(interactor: CoinsInteractorProtocol) {
+    init(interactor: TopCoinsInteractorProtocol) {
     
         _interactor = interactor
         
@@ -47,14 +47,16 @@ class CoinsPresenter: BasePresenter {
                 switch response {
                     
                 case .loading:
-                    strongSelf.viewStateVariable.value = .loading(PlaceholderViewModel(text: R.string.localizable.placeholderLoading()))
+                    strongSelf.viewStateVariable.value = .loading(PlaceholderViewModel(text: Strings.placeholderLoading()))
 
-                case .success(let topCoins):
+                case .success(let coins):
                     strongSelf.viewStateVariable.value = .normal
-                    strongSelf._coinsVariable.value = topCoins
-                    
+                    strongSelf._coinsVariable.value = coins
+//                    let placeholderViewModel = PlaceholderViewModel(text: Strings.errorDefault(), details: "coins -> \(coins.count)")
+//                    strongSelf.viewStateVariable.value = .failure(placeholderViewModel)
+
                 case .failure(let error):
-                    let placeholderViewModel = PlaceholderViewModel(text: error.localizedDescription, action: nil)
+                    let placeholderViewModel = PlaceholderViewModel(text: Strings.errorDefault(), details: error.localizedDescription)
                     strongSelf.viewStateVariable.value = .failure(placeholderViewModel)
                     
                 default:
@@ -65,7 +67,7 @@ class CoinsPresenter: BasePresenter {
     }
 }
 
-extension CoinsPresenter: CoinsPresenterProtocol {
+extension TopCoinsPresenter: TopCoinsPresenterProtocol {
     
     var coins: Observable<[Coin]> {
         return _coinsVariable.asObservable()
@@ -74,12 +76,4 @@ extension CoinsPresenter: CoinsPresenterProtocol {
     func getCoins() {
         _interactor.getTopCoins()
     }
-    
-//    func viewDidAppear() {
-//
-//        // TODO: fetch data from server...
-////        let clientApi = CoinsMarketCapAPIClient()
-//        let clientApi = CoinMarketCapAPIClientMock()
-//        print(clientApi.coins(limit: 10))
-//    }
 }

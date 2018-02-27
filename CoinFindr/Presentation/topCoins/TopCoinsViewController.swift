@@ -1,5 +1,5 @@
 //
-//  CoinsViewController.swift
+//  TopCoinsViewController.swift
 //  CoinFindr
 //
 //  Created by Marsal Silveira.
@@ -11,18 +11,17 @@ import Cartography
 import RxSwift
 import RxCocoa
 
-class CoinsViewController: BaseViewController {
+class TopCoinsViewController: BaseViewController {
     
     // ************************************************
     // MARK: Properties
     // ************************************************
 
-    private var _presenter: CoinsPresenterProtocol {
-        return basePresenter as! CoinsPresenterProtocol
+    private var _presenter: TopCoinsPresenterProtocol {
+        return basePresenter as! TopCoinsPresenterProtocol
     }
     
     fileprivate var _coins = [Coin]()
-    private let _disposeBag = DisposeBag()
     
     // ************************************************
     // MARK: UI Components
@@ -31,8 +30,8 @@ class CoinsViewController: BaseViewController {
     fileprivate lazy var _refreshControl: UIRefreshControl = {
 
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(CoinsViewController.handleRefresh(_:)), for: .valueChanged)
-//        refreshControl.tintColor = Colors.coolBlue()
+        refreshControl.addTarget(self, action: #selector(TopCoinsViewController.handleRefresh(_:)), for: .valueChanged)
+        refreshControl.tintColor = UIColor.customBlue
         refreshControl.alpha = 0.75
 
         return refreshControl
@@ -53,25 +52,35 @@ class CoinsViewController: BaseViewController {
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        // remove all empyt rows
+        // remove all empyt rows and line separator
         tableView.tableFooterView = UIView()
+        tableView.separatorStyle = .none
         
         // register cells
         tableView.register(CoinCell.self)
         
         return tableView
     }()
+
+    private lazy var _refreshButton: UIBarButtonItem = {
+        
+        let refreshButton = UIBarButtonItem()
+        refreshButton.image = Images.refresh()
+        
+        _ = refreshButton.rx.tap
+            .takeUntil(rx.deallocated)
+            .bind {
+                [weak self] in
+                self?.loadData()
+            }
+        
+        return refreshButton
+    }()
     
     // ************************************************
     // MARK: UIViewController Lifecycle
     // ************************************************
-    
-    override func loadView() {
-        super.loadView()
-        
-        self.addTableView()
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,23 +95,31 @@ class CoinsViewController: BaseViewController {
         super.bind()
         
         _presenter.coins
-            .bind(onNext: { [weak self] (coins) in
+            .bind(onNext: { [weak self] (TopCoins) in
                 guard let strongSelf = self else { return }
-                strongSelf.reloadData(with: coins)
+                strongSelf.reloadData(with: TopCoins)
             })
-            .disposed(by: _disposeBag)
+            .disposed(by: disposeBag)
+    }
+    
+    private func setupOnLoad() {
+        
+        self.title = Strings.topCoinsTitle()
+        
+        self.addRefreshButton()
+        self.addTableView()
+        self.loadData()
+    }
+    
+    private func addRefreshButton() {
+        self.navigationItem.rightBarButtonItem = _refreshButton
     }
     
     private func addTableView() {
-        
         self.view.addSubview(_tableView)
         constrain(view, _tableView) { (container, tableView) in
             tableView.edges == container.edges
         }
-    }
-    
-    private func setupOnLoad() {
-        self.loadData()
     }
     
     //*************************************************
@@ -112,17 +129,20 @@ class CoinsViewController: BaseViewController {
     @objc private func handleRefresh(_ refreshControl: UIRefreshControl) {
 
 //        _refreshControl.endRefreshing()
-//        self.loadData()
+        self.loadData()
     }
 
     //*************************************************
     // MARK: - Data
+    
     //*************************************************
     
-    private func reloadData(with coins: [Coin]) {
+    private func reloadData(with TopCoins: [Coin]) {
+        
+        _refreshControl.endRefreshing()
         
         _coins.removeAll()
-        _coins.append(contentsOf: coins)
+        _coins.append(contentsOf: TopCoins)
         
         _tableView.reloadData()
     }
@@ -136,17 +156,22 @@ class CoinsViewController: BaseViewController {
 // MARK: - UITableViewDataSource
 // ************************************************
 
-extension CoinsViewController: UITableViewDataSource {
-    
+extension TopCoinsViewController: UITableViewDataSource {
+
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return _coins.count
     }
-    
+
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as CoinCell
         cell.setup(coin: _coins[indexPath.row])
-        
+
+        cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        UIView.animate(withDuration: 0.4) {
+            cell.transform = CGAffineTransform.identity
+        }
+
         return cell
     }
 }
@@ -155,10 +180,9 @@ extension CoinsViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 // ************************************************
 
-extension CoinsViewController: UITableViewDelegate {
+extension TopCoinsViewController: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-//        _presenter?.didSelect(_rooms[indexPath.row])
     }
 }

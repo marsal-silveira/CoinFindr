@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CoinCell" rowHeight="165" id="Ae9-Vy-8C3" customClass="CoinCell" customModule="CoinFindr" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="136"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ae9-Vy-8C3" id="5vI-Y0-GYt">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="135.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lD7-l1-aS0">
+                        <rect key="frame" x="8" y="8" width="304" height="119.5"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QeN-8w-Dex">
+                                <rect key="frame" x="6" y="0.0" width="298" height="119.5"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lm3-x6-rds" customClass="TagView" customModule="CoinFindr" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="12" width="26" height="20.5"/>
+                                        <color key="backgroundColor" red="0.24705882352941178" green="0.5490196078431373" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="corner">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="#1"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c9Q-gS-Ft0" customClass="TagView" customModule="CoinFindr" customModuleProvider="target">
+                                        <rect key="frame" x="50" y="12" width="36.5" height="20.5"/>
+                                        <color key="backgroundColor" red="0.10588235294117647" green="0.47843137254901957" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="corner">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="BTC"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="12" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price (USD)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pxN-7F-lbE">
+                                        <rect key="frame" x="16" y="47" width="274" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                                        <color key="textColor" red="0.68627450980000004" green="0.68627450980000004" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="12" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 10,696.50" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f0S-eF-CfO">
+                                        <rect key="frame" x="16" y="59" width="274" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="12" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price (BTC)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPp-2o-FbB">
+                                        <rect key="frame" x="16" y="82" width="274" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                                        <color key="textColor" red="0.68627450980000004" green="0.68627450980000004" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="12" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzB-t3-rdG">
+                                        <rect key="frame" x="16" y="94" width="274" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" verticalHuggingPriority="243" text="Bitcoin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kc1-I6-5kx">
+                                        <rect key="frame" x="94.5" y="14" width="195.5" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="lm3-x6-rds" firstAttribute="top" secondItem="QeN-8w-Dex" secondAttribute="top" constant="12" id="6Ku-kq-qLH"/>
+                                    <constraint firstItem="pxN-7F-lbE" firstAttribute="leading" secondItem="QeN-8w-Dex" secondAttribute="leading" constant="16" id="8Xu-Mf-edQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="GPp-2o-FbB" secondAttribute="trailing" constant="8" id="Ots-wS-PuE"/>
+                                    <constraint firstItem="mzB-t3-rdG" firstAttribute="top" secondItem="GPp-2o-FbB" secondAttribute="bottom" id="Oyv-gD-Zmh"/>
+                                    <constraint firstItem="kc1-I6-5kx" firstAttribute="leading" secondItem="c9Q-gS-Ft0" secondAttribute="trailing" constant="8" id="T3X-nO-Xpt"/>
+                                    <constraint firstItem="c9Q-gS-Ft0" firstAttribute="centerY" secondItem="lm3-x6-rds" secondAttribute="centerY" id="TPc-zh-u93"/>
+                                    <constraint firstAttribute="trailing" secondItem="kc1-I6-5kx" secondAttribute="trailing" constant="8" id="TRE-gV-fXg"/>
+                                    <constraint firstAttribute="trailing" secondItem="pxN-7F-lbE" secondAttribute="trailing" constant="8" id="Tr3-PI-Drk"/>
+                                    <constraint firstAttribute="trailing" secondItem="mzB-t3-rdG" secondAttribute="trailing" constant="8" id="VJJ-pR-d6l"/>
+                                    <constraint firstItem="GPp-2o-FbB" firstAttribute="leading" secondItem="QeN-8w-Dex" secondAttribute="leading" constant="16" id="VMm-xn-Zhj"/>
+                                    <constraint firstItem="kc1-I6-5kx" firstAttribute="centerY" secondItem="c9Q-gS-Ft0" secondAttribute="centerY" id="VQz-2n-g2l"/>
+                                    <constraint firstItem="f0S-eF-CfO" firstAttribute="leading" secondItem="QeN-8w-Dex" secondAttribute="leading" constant="16" id="WUg-rb-Gni"/>
+                                    <constraint firstItem="mzB-t3-rdG" firstAttribute="leading" secondItem="QeN-8w-Dex" secondAttribute="leading" constant="16" id="agB-gF-406"/>
+                                    <constraint firstItem="lm3-x6-rds" firstAttribute="leading" secondItem="QeN-8w-Dex" secondAttribute="leading" constant="16" id="bcY-ku-qiV"/>
+                                    <constraint firstAttribute="trailing" secondItem="f0S-eF-CfO" secondAttribute="trailing" constant="8" id="ej1-FC-VMH"/>
+                                    <constraint firstAttribute="bottom" secondItem="mzB-t3-rdG" secondAttribute="bottom" constant="8" id="gYs-dr-rq3"/>
+                                    <constraint firstItem="c9Q-gS-Ft0" firstAttribute="leading" secondItem="lm3-x6-rds" secondAttribute="trailing" constant="8" id="lob-m2-xib"/>
+                                    <constraint firstItem="f0S-eF-CfO" firstAttribute="top" secondItem="pxN-7F-lbE" secondAttribute="bottom" id="mFU-vG-eL4"/>
+                                    <constraint firstItem="GPp-2o-FbB" firstAttribute="top" secondItem="f0S-eF-CfO" secondAttribute="bottom" constant="6" id="u5N-sC-RKw"/>
+                                    <constraint firstItem="pxN-7F-lbE" firstAttribute="top" secondItem="kc1-I6-5kx" secondAttribute="bottom" constant="16" id="u6H-1A-6Cu"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.37647058820000001" green="0.76078431369999999" blue="0.38431372549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="QeN-8w-Dex" firstAttribute="leading" secondItem="lD7-l1-aS0" secondAttribute="leading" constant="6" id="G0p-wY-Cxs"/>
+                            <constraint firstAttribute="trailing" secondItem="QeN-8w-Dex" secondAttribute="trailing" id="MjP-di-lLw"/>
+                            <constraint firstItem="QeN-8w-Dex" firstAttribute="top" secondItem="lD7-l1-aS0" secondAttribute="top" id="fMN-8E-5Oh"/>
+                            <constraint firstAttribute="bottom" secondItem="QeN-8w-Dex" secondAttribute="bottom" id="g4B-Qp-1AN"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="lD7-l1-aS0" firstAttribute="leading" secondItem="5vI-Y0-GYt" secondAttribute="leading" constant="8" id="Edd-rg-7ED"/>
+                    <constraint firstItem="lD7-l1-aS0" firstAttribute="top" secondItem="5vI-Y0-GYt" secondAttribute="top" constant="8" id="G48-Q4-TAK"/>
+                    <constraint firstAttribute="bottom" secondItem="lD7-l1-aS0" secondAttribute="bottom" constant="8" id="UQs-Sa-KAw"/>
+                    <constraint firstAttribute="trailing" secondItem="lD7-l1-aS0" secondAttribute="trailing" constant="8" id="t7j-Xp-XE4"/>
+                </constraints>
+            </tableViewCellContentView>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="cardView" destination="lD7-l1-aS0" id="wm1-ds-eVc"/>
+                <outlet property="containerView" destination="QeN-8w-Dex" id="CDo-5M-fql"/>
+                <outlet property="nameLabel" destination="kc1-I6-5kx" id="auM-Gk-9en"/>
+                <outlet property="priceBTCLabel" destination="mzB-t3-rdG" id="KyD-xI-Udw"/>
+                <outlet property="priceBTCTitleLabel" destination="GPp-2o-FbB" id="Ldi-WF-ybS"/>
+                <outlet property="priceUSDLabel" destination="f0S-eF-CfO" id="c6x-hO-UAt"/>
+                <outlet property="priceUSDTitleLabel" destination="pxN-7F-lbE" id="3kh-Ak-376"/>
+                <outlet property="rankTag" destination="lm3-x6-rds" id="nvV-b3-uLd"/>
+                <outlet property="symbolTag" destination="c9Q-gS-Ft0" id="VRv-5d-MJw"/>
+            </connections>
+            <point key="canvasLocation" x="-160" y="-33"/>
+        </tableViewCell>
+    </objects>
+</document>

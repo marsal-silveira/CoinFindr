@@ -1,5 +1,5 @@
 //
-//  CoinsRepository.swift
+//  CoinRepository.swift
 //  CoinFindr
 //
 //  Created by Marsal Silveira.
@@ -10,12 +10,12 @@ import Foundation
 import RxSwift
 import ObjectMapper
 
-protocol CoinsRepositoryProtocol {
+protocol CoinRepositoryProtocol {
     
     func getTopCoins() -> Single<[CoinAPI]>
 }
 
-class CoinsRepository: BaseRepository {
+class CoinRepository: BaseRepository {
  
     internal let apiClient: CoinMarketCapAPIProtocol
 
@@ -24,7 +24,7 @@ class CoinsRepository: BaseRepository {
     }
 }
 
-extension CoinsRepository: CoinsRepositoryProtocol {
+extension CoinRepository: CoinRepositoryProtocol {
     
     func getTopCoins() -> Single<[CoinAPI]> {
         return apiClient.coins(limit: 10)
