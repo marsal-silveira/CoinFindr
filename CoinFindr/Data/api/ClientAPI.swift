@@ -8,22 +8,24 @@
 
 import Foundation
 import Moya
+import Moya_ObjectMapper
+import RxSwift
 
 protocol CoinMarketCapAPIProtocol {
 
-    func tickers(limit: Int) //-> Single<[WorkoutTypeAPI]>
+    func coins(limit: Int) -> Single<[CoinAPI]>
 }
 
 /// it will contain all methods to do interactions with api, to be simpler to change if necessary
 class CoinMarketCapAPI: CoinMarketCapAPIProtocol {
-    
+
     private static let _apiVersion = "/v1"
     fileprivate static let baseURL = URL(string: "https://api.coinmarketcap.com" + _apiVersion)!
-    
-    private lazy var provider = MoyaProvider<CoinMarketCapAPITarget>(
-        
+
+    private lazy var _provider = MoyaProvider<CoinMarketCapAPITarget>(
+
         endpointClosure: { (target) -> Endpoint<CoinMarketCapAPITarget> in
-            
+
             return Endpoint<CoinMarketCapAPITarget>(
                 url: "\(target.baseURL)\(target.path)",
                 sampleResponseClosure: { .networkResponse(200, target.sampleData) },
@@ -37,22 +39,19 @@ class CoinMarketCapAPI: CoinMarketCapAPIProtocol {
             NetworkLoggerPlugin(verbose: true)
         ]
     )
-    
-    func tickers(limit: Int) { //-> Single<[WorkoutTypeAPI]> {
-        
-        self.provider.request(.tickers(limit: 10)) { (result) in
-            print("result -> \(result)")
-        }
-        //        return provider.rx
-        //            .request(.training(exerciseTypeIds: exerciseTypeIds, minutes: minutes))
-        //            .processResponse()
-        //            .mapArray(SampleVideoAPI.self)
+
+    func coins(limit: Int) -> Single<[CoinAPI]> {
+
+        return _provider.rx
+            .request(.coins(limit: limit))
+            .processResponse()
+            .mapArray(CoinAPI.self)
     }
 }
 
 enum CoinMarketCapAPITarget {
-    
-    case tickers(limit: Int)
+
+    case coins(limit: Int)
 }
 
 extension CoinMarketCapAPITarget: TargetType {
@@ -63,7 +62,7 @@ extension CoinMarketCapAPITarget: TargetType {
     
     var path: String {
         switch self {
-        case .tickers(let limit):
+        case .coins(let limit):
             return "/ticker/?limit=\(limit)"
         }
     }
