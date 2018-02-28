@@ -17,7 +17,7 @@ class ErrorView: NibDesignable {
     // MARK: - Init | Lifecycle
     // ************************************************
     
-    init(viewModel: PlaceholderViewModel) {
+    init(viewModel: ErrorViewModel) {
         super.init(frame: .zero)
         
         self.backgroundColor = UIColor.bgPlaceholderError

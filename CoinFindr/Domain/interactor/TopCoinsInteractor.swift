@@ -11,8 +11,11 @@ import RxSwift
 
 protocol TopCoinsInteractorProtocol {
     
-    var topCoins: Observable<RequestResponse<[Coin]>> { get }
-    func getTopCoins()
+    var coins: Observable<RequestResponse<[Coin]>> { get }
+    
+    func getCoins()
+    func startPooling()
+    func stopPooling()
 }
 
 class TopCoinsInteractor: BaseInteractor {
@@ -20,7 +23,8 @@ class TopCoinsInteractor: BaseInteractor {
     private let _repository: CoinRepositoryProtocol
     private var _disposeBag = DisposeBag()
     
-    private let _topCoinsVariable = Variable<RequestResponse<[Coin]>>(.new)
+    // pooling timer... 5-5 minutes this will start a new search from top coins...
+    private var _timer: Timer?
     
     init(repository: CoinRepositoryProtocol) {
         
@@ -30,30 +34,36 @@ class TopCoinsInteractor: BaseInteractor {
 }
 
 extension TopCoinsInteractor: TopCoinsInteractorProtocol {
-    
-    var topCoins: Observable<RequestResponse<[Coin]>> {
-        return _topCoinsVariable.asObservable()
+
+    var coins: Observable<RequestResponse<[Coin]>> {
+        return _repository.topCoins
     }
-    
-    func getTopCoins() {
-        
-        _topCoinsVariable.value = .loading
-        
+
+    func getCoins() {
         _repository.getTopCoins()
-            .subscribe { [weak self] (eventRx) in
+    }
+
+    func startPooling() {
+
+        guard _timer == nil else { return }
+
+        _timer = Timer.scheduledTimer(
+            withTimeInterval: 60.0 * 5, // 5 min
+            repeats: true,
+            block: {
+                [weak self] (timer) in
                 guard let strongSelf = self else { return }
-                
-                let event = transformEvent(event: eventRx)
-                switch event {
-                    
-                case .success(let coinsAPI):
-                    let coins = Coin.mapArray(coinsAPI: coinsAPI)
-                    strongSelf._topCoinsVariable.value = .success(coins)
-                    
-                case .error(let error):
-                    strongSelf._topCoinsVariable.value = .failure(error)
-                }
+
+                strongSelf._repository.getTopCoins()
             }
-            .disposed(by: _disposeBag)
+        )
+    }
+
+    func stopPooling() {
+
+        guard let timer = _timer else { return }
+
+        timer.invalidate()
+        _timer = nil
     }
 }

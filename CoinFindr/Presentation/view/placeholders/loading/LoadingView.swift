@@ -16,18 +16,13 @@ class LoadingView: NibDesignable {
     // MARK: - Init
     // ************************************************
     
-    init(viewModel: PlaceholderViewModel) {
+    init(viewModel: LoadingViewModel) {
         super.init(frame: .zero)
 
         self.backgroundColor = UIColor.bgPlaceholderLoading
         self.titleLabel.text = viewModel.text
         self.titleLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         self.titleLabel.textColor = UIColor.customBlue
-        
-//        self.alpha = 0.0
-//        self.loadingImageCenterYConstraint.constant = -self.frame.size.height
-//        self.loadingImage.alpha = 0.0
-//        self.titleLabel.alpha = 0.0
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -38,7 +33,6 @@ class LoadingView: NibDesignable {
     // MARK: - @IBOutlets
     // ************************************************
     
-    @IBOutlet weak var loadingImageCenterYConstraint: NSLayoutConstraint!
     @IBOutlet weak var loadingImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -72,38 +66,10 @@ extension LoadingView: Placeholder {
             view.trailing == container.trailing
             view.bottom == container.bottom
         }
-        parent.layoutIfNeeded()
 
         DispatchQueue.main.async {
             [weak self] in
-            guard let strongSelf = self else { return }
-
-            strongSelf.animate()
-            
-            UIView.animate(
-                withDuration: 0.25,
-                animations: {
-                    [weak self] in
-                    guard let strongSelf = self else { return }
-                    strongSelf.alpha = 1.0
-                },
-                completion: {
-                    [weak self] (result) in
-                    guard let strongSelf = self else { return }
-                    
-                    strongSelf.loadingImageCenterYConstraint.constant = -15
-                    UIView.animate(
-                        withDuration: 0.25,
-                        animations: {
-                            
-                            strongSelf.loadingImage.alpha = 1.0
-                            strongSelf.titleLabel.alpha = 1.0
-                            
-                            strongSelf.layoutIfNeeded()
-                        }
-                    )
-                }
-            )
+            self?.animate()
         }
     }
     

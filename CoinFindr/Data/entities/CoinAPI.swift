@@ -15,6 +15,8 @@ class CoinAPI: Mappable {
     var name: String?
     var symbol: String?
     var rank: String?
+    var priceUSD: String?
+    var priceBTC: String?
     
     required init?(map: Map) {
         mapping(map: map)
@@ -25,5 +27,7 @@ class CoinAPI: Mappable {
         name <- map["name"]
         symbol <- map["symbol"]
         rank <- map["rank"]
+        priceUSD <- map["price_usd"]
+        priceBTC <- map["price_btc"]
     }
 }

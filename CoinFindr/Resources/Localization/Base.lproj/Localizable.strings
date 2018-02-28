@@ -24,6 +24,6 @@
 "placeholder.loading.error" = "Something wrong here...";
 
 // Top Coins
-"top.coins.title" = "Top Coins";
+"top.coins.title" = "Top#10 Coins";
 "top.coins.cell.price.usd" = "Price (USD)";
 "top.coins.cell.price.btc" = "Price (BTC)";

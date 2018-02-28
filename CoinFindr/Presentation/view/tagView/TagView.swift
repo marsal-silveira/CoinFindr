@@ -8,11 +8,6 @@
 import Foundation
 import UIKit
 
-public protocol TagViewDelegate: class {
-    
-    func tagView(_ tagView: TagView, didSelectTag tag: TagView)
-}
-
 open class TagView: NibDesignable {
     
     // ************************************************
@@ -38,13 +33,7 @@ open class TagView: NibDesignable {
     // ************************************************
     // MARK: - Properties
     // ************************************************
-    
-    private weak var _delegate: TagViewDelegate?
-    open var delegate: TagViewDelegate? {
-        get { return _delegate }
-        set { _delegate = newValue }
-    }
-    
+
     private var _corner: CornerType = .straight { // Not available in IB, despite `@IBInspectable`
         didSet { self.layer.cornerRadius = _corner.value(self) }
     }

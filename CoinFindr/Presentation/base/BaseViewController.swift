@@ -41,13 +41,7 @@ class BaseViewController: UIViewController {
     convenience required init?(coder aDecoder: NSCoder) {
         self.init(coder: aDecoder)
     }
-    
-    override func loadView() {
-        super.loadView()
 
-        view.backgroundColor = .white
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -81,11 +75,11 @@ class BaseViewController: UIViewController {
                 case .normal:
                     strongSelf.dismissPlaceholder()
                     
-                case .failure(let viewModel):
-                    strongSelf.presentPlaceholder(with: viewModel, type: .error)
-                    
                 case .loading(let viewModel):
-                    strongSelf.presentPlaceholder(with: viewModel, type: .loading)
+                    strongSelf.presentPlaceholder(type: .loading(viewModel))
+                    
+                case .error(let viewModel):
+                    strongSelf.presentPlaceholder(type: .error(viewModel))
                 }
             }
             .disposed(by: disposeBag)
@@ -95,14 +89,14 @@ class BaseViewController: UIViewController {
     // MARK: Placeholders
     // ************************************************
 
-    private func presentPlaceholder(with viewModel: PlaceholderViewModel, type: PlaceholderType) {
+    private func presentPlaceholder(type: PlaceholderType) {
         view.endEditing(true)
         
         switch type {
-        case .loading:
+        case .loading(let viewModel):
             self.showLoading(viewModel: viewModel)
             
-        case .error:
+        case .error(let viewModel):
             self.showError(viewModel: viewModel)
         }
     }
@@ -112,7 +106,7 @@ class BaseViewController: UIViewController {
         _placeholder = nil
     }
 
-    private func showLoading(viewModel: PlaceholderViewModel) {
+    private func showLoading(viewModel: LoadingViewModel) {
         self.dismissPlaceholder()
         
         let loadingView = LoadingView(viewModel: viewModel)
@@ -120,7 +114,7 @@ class BaseViewController: UIViewController {
         _placeholder = loadingView
     }
     
-    private func showError(viewModel: PlaceholderViewModel) {
+    private func showError(viewModel: ErrorViewModel) {
         dismissPlaceholder()
         
         let errorView = ErrorView(viewModel: viewModel)

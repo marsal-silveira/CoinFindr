@@ -12,8 +12,8 @@ import RxSwift
 enum ViewState {
     
     case normal
-    case loading(PlaceholderViewModel)
-    case failure(PlaceholderViewModel)
+    case loading(LoadingViewModel)
+    case error(ErrorViewModel)
 }
 
 protocol BasePresenterProtocol {

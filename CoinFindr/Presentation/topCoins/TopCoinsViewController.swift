@@ -43,7 +43,7 @@ class TopCoinsViewController: BaseViewController {
         
         // set delegate and dataSource
         tableView.dataSource = self
-        tableView.delegate = self
+//        tableView.delegate = self
         
         // RefreshControll (Pull to Refresh)
         tableView.refreshControl = _refreshControl
@@ -62,21 +62,6 @@ class TopCoinsViewController: BaseViewController {
         return tableView
     }()
 
-    private lazy var _refreshButton: UIBarButtonItem = {
-        
-        let refreshButton = UIBarButtonItem()
-        refreshButton.image = Images.refresh()
-        
-        _ = refreshButton.rx.tap
-            .takeUntil(rx.deallocated)
-            .bind {
-                [weak self] in
-                self?.loadData()
-            }
-        
-        return refreshButton
-    }()
-    
     // ************************************************
     // MARK: UIViewController Lifecycle
     // ************************************************
@@ -87,13 +72,25 @@ class TopCoinsViewController: BaseViewController {
         self.setupOnLoad()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        _presenter.startPooling()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        _presenter.stopPooling()
+    }
+    
     // ************************************************
     // MARK: Setup
     // ************************************************
     
     override func bind() {
         super.bind()
-        
+
         _presenter.coins
             .bind(onNext: { [weak self] (TopCoins) in
                 guard let strongSelf = self else { return }
@@ -106,13 +103,8 @@ class TopCoinsViewController: BaseViewController {
         
         self.title = Strings.topCoinsTitle()
         
-        self.addRefreshButton()
         self.addTableView()
         self.loadData()
-    }
-    
-    private func addRefreshButton() {
-        self.navigationItem.rightBarButtonItem = _refreshButton
     }
     
     private func addTableView() {
@@ -127,18 +119,15 @@ class TopCoinsViewController: BaseViewController {
     //*************************************************
 
     @objc private func handleRefresh(_ refreshControl: UIRefreshControl) {
-
-//        _refreshControl.endRefreshing()
         self.loadData()
     }
 
     //*************************************************
     // MARK: - Data
-    
     //*************************************************
     
     private func reloadData(with TopCoins: [Coin]) {
-        
+
         _refreshControl.endRefreshing()
         
         _coins.removeAll()
@@ -176,13 +165,14 @@ extension TopCoinsViewController: UITableViewDataSource {
     }
 }
 
-// ************************************************
-// MARK: - UITableViewDelegate
-// ************************************************
+//// ************************************************
+//// MARK: - UITableViewDelegate
+//// ************************************************
+//
+//extension TopCoinsViewController: UITableViewDelegate {
+//
+//    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//    }
+//}
 
-extension TopCoinsViewController: UITableViewDelegate {
-    
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-    }
-}

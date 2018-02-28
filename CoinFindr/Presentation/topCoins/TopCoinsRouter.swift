@@ -25,7 +25,7 @@ class TopCoinsRouter: BaseRouter {
     
     override init() {
         
-        let interactor = TopCoinsInteractor(repository: CoinRepository(apiClient: CoinMarketCapAPI()))
+        let interactor = TopCoinsInteractor(repository: RepositoryPool.shared.coinRepository)
         _presenter = TopCoinsPresenter(interactor: interactor)
         _viewController = TopCoinsViewController(presenter: _presenter)
         _navigationController = BaseNavigationController(rootViewController: _viewController)

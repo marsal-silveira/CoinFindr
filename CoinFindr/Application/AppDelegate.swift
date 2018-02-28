@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        // configure background fetch
+        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+        
         let window = UIWindow(frame: UIScreen.main.bounds)
         _container = ContainerRouter()
         _container?.presentOn(window: window)
@@ -24,5 +27,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = window
         
         return true
+    }
+}
+
+// ************************************************
+// MARK: Background Fetch
+// ************************************************
+
+extension AppDelegate {
+    
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        // when background fetch was fired we refresh the coins using repository pool
+        RepositoryPool.shared.coinRepository.getTopCoins()
+        completionHandler(UIBackgroundFetchResult.newData)
     }
 }

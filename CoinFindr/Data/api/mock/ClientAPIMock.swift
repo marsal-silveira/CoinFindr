@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import ObjectMapper
 
-class CoinMarketCapAPIClientMock: CoinMarketCapAPIProtocol {
+class CoinMarketCapAPIMock: CoinMarketCapAPIProtocol {
     
     func coins(limit: Int) -> Single<[CoinAPI]> {
         return Single.error(APIError.error(description: "¯\\_(ツ)_/¯\nNot implemented"))

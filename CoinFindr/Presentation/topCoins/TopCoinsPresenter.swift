@@ -15,6 +15,8 @@ protocol TopCoinsPresenterProtocol: BasePresenterProtocol {
     var coins: Observable<[Coin]> { get }
     
     func getCoins()
+    func startPooling()
+    func stopPooling()
 }
 
 class TopCoinsPresenter: BasePresenter {
@@ -40,24 +42,22 @@ class TopCoinsPresenter: BasePresenter {
     
     private func bind() {
         
-        _interactor.topCoins
+        _interactor.coins
             .bind {[weak self] (response) in
                 guard let strongSelf = self else { return }
                 
                 switch response {
                     
                 case .loading:
-                    strongSelf.viewStateVariable.value = .loading(PlaceholderViewModel(text: Strings.placeholderLoading()))
+                    strongSelf.viewStateVariable.value = .loading(LoadingViewModel(text: Strings.placeholderLoading()))
 
                 case .success(let coins):
                     strongSelf.viewStateVariable.value = .normal
                     strongSelf._coinsVariable.value = coins
-//                    let placeholderViewModel = PlaceholderViewModel(text: Strings.errorDefault(), details: "coins -> \(coins.count)")
-//                    strongSelf.viewStateVariable.value = .failure(placeholderViewModel)
 
                 case .failure(let error):
-                    let placeholderViewModel = PlaceholderViewModel(text: Strings.errorDefault(), details: error.localizedDescription)
-                    strongSelf.viewStateVariable.value = .failure(placeholderViewModel)
+                    let placeholderViewModel = ErrorViewModel(text: Strings.errorDefault(), details: error.localizedDescription)
+                    strongSelf.viewStateVariable.value = .error(placeholderViewModel)
                     
                 default:
                     break
@@ -74,6 +74,14 @@ extension TopCoinsPresenter: TopCoinsPresenterProtocol {
     }
     
     func getCoins() {
-        _interactor.getTopCoins()
+        _interactor.getCoins()
+    }
+    
+    func startPooling() {
+        _interactor.startPooling()
+    }
+    
+    func stopPooling() {
+        _interactor.stopPooling()
     }
 }

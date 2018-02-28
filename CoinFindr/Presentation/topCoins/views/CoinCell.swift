@@ -55,7 +55,7 @@ class CoinCell: UITableViewCell {
         symbolTag.title = coin.symbol
         
         nameLabel.text = coin.name
-//        priceUSDLabel.text = "Bem caro..."
-//        priceBTCLabel.text = "Também..."
+        priceUSDLabel.text = coin.priceUSD
+        priceBTCLabel.text = coin.priceBTC
     }
 }

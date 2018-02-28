@@ -13,7 +13,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoadingView" customModule="CoinFindr" customModuleProvider="target">
             <connections>
                 <outlet property="loadingImage" destination="CAR-3V-sgO" id="lCT-83-rCE"/>
-                <outlet property="loadingImageCenterYConstraint" destination="sfL-gO-2Cw" id="2cf-Js-QUH"/>
                 <outlet property="titleLabel" destination="X3L-dR-MyC" id="7l1-Zu-n2f"/>
             </connections>
         </placeholder>
