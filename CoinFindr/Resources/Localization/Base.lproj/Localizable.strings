@@ -27,3 +27,6 @@
 "top.coins.title" = "Top#10 Coins";
 "top.coins.cell.price.usd" = "Price (USD)";
 "top.coins.cell.price.btc" = "Price (BTC)";
+
+// Coin Details
+"coin.details.title" = "Details";

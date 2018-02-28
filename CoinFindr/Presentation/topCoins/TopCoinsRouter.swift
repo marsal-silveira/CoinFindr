@@ -10,12 +10,12 @@ import UIKit
 import RxCocoa
 
 protocol TopCoinsRouterProtocol: class {
-
+    func showCoinDetails(_ coin: Coin)
 }
 
 class TopCoinsRouter: BaseRouter {
     
-    private let _navigationController: UINavigationController
+    private let _navigationController: BaseNavigationController
     private let _viewController: TopCoinsViewController
     private var _presenter: TopCoinsPresenterProtocol
     
@@ -44,12 +44,18 @@ class TopCoinsRouter: BaseRouter {
                 guard let strongSelf = self else { return }
                 
                 if strongSelf._viewController === viewController {
-                    strongSelf.presentedWireFrame = nil
+                    strongSelf.presentedRouter = nil
                 }
             })
     }
 }
 
 extension TopCoinsRouter: TopCoinsRouterProtocol {
-    
+
+    func showCoinDetails(_ coin: Coin) {
+        
+        let detailsRouter = CoinDetailsRouter(coin: coin, callback: self)
+        detailsRouter.present(on: _viewController)
+        presentedRouter = detailsRouter
+    }
 }

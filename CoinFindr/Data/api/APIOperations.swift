@@ -1,5 +1,5 @@
 //
-//  ClienteAPIOperations.swift
+//  APIOperations.swift
 //  CoinFindr
 //
 //  Created by Marsal Silveira.
@@ -47,22 +47,9 @@ extension PrimitiveSequence where TraitType == SingleTrait, ElementType == Respo
         
         return flatMap({ response -> Single<Moya.Response> in
             if response.statusCode >= 200 && response.statusCode <= 299 {
-                
                 return Single.just(response)
-            }
-            else {
-                switch response.data.asJSON {
-                case .success(let JSONDict):
-                    print(JSONDict)
-                    // TODO: check this
-//                    if let errorAPI = Mapper<ErrorAPI>().map(JSON: JSONDict) {
-//                        return Single.error(APIError.error(description: errorAPI.localizedDescription))
-//                    } else {
-                    return Single.error(APIError.error(description: Strings.errorParseJson()))
-//                    }
-                case .failure(let error):
-                    return Single.error(error)
-                }
+            } else {
+                return Single.error(APIError.error(description: Strings.errorDefault()))
             }
         })
     }

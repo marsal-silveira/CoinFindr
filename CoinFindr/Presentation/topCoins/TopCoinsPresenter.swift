@@ -17,6 +17,8 @@ protocol TopCoinsPresenterProtocol: BasePresenterProtocol {
     func getCoins()
     func startPooling()
     func stopPooling()
+    
+    func didSelectCoin(_ coin: Coin)
 }
 
 class TopCoinsPresenter: BasePresenter {
@@ -83,5 +85,9 @@ extension TopCoinsPresenter: TopCoinsPresenterProtocol {
     
     func stopPooling() {
         _interactor.stopPooling()
+    }
+    
+    func didSelectCoin(_ coin: Coin) {
+        _router?.showCoinDetails(coin)
     }
 }

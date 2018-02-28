@@ -78,8 +78,7 @@ extension CoinMarketCapAPITarget: TargetType {
         
         let headers: [String: String] = [
             "Content-Type": "application/json",
-            "Accept": "application/json",
-            "Accept-Language": "pt-BR"
+            "Accept": "application/json"
         ]
         return headers
     }

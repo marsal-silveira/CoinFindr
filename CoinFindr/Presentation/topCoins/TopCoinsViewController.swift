@@ -43,7 +43,7 @@ class TopCoinsViewController: BaseViewController {
         
         // set delegate and dataSource
         tableView.dataSource = self
-//        tableView.delegate = self
+        tableView.delegate = self
         
         // RefreshControll (Pull to Refresh)
         tableView.refreshControl = _refreshControl
@@ -165,14 +165,18 @@ extension TopCoinsViewController: UITableViewDataSource {
     }
 }
 
-//// ************************************************
-//// MARK: - UITableViewDelegate
-//// ************************************************
-//
-//extension TopCoinsViewController: UITableViewDelegate {
-//
-//    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//    }
-//}
+// ************************************************
+// MARK: - UITableViewDelegate
+// ************************************************
 
+extension TopCoinsViewController: UITableViewDelegate {
+
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        DispatchQueue.main.async {
+            [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf._presenter.didSelectCoin(strongSelf._coins[indexPath.row])
+        }
+    }
+}

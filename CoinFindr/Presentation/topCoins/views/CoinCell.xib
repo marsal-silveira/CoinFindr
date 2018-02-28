@@ -25,7 +25,7 @@
                                 <rect key="frame" x="6" y="0.0" width="298" height="119.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lm3-x6-rds" customClass="TagView" customModule="CoinFindr" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="12" width="26" height="20.5"/>
+                                        <rect key="frame" x="16" y="12" width="26" height="18.5"/>
                                         <color key="backgroundColor" red="0.24705882352941178" green="0.5490196078431373" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="corner">
@@ -38,7 +38,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c9Q-gS-Ft0" customClass="TagView" customModule="CoinFindr" customModuleProvider="target">
-                                        <rect key="frame" x="50" y="12" width="36.5" height="20.5"/>
+                                        <rect key="frame" x="50" y="11" width="36.5" height="20.5"/>
                                         <color key="backgroundColor" red="0.10588235294117647" green="0.47843137254901957" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="corner">
@@ -75,8 +75,8 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" verticalHuggingPriority="243" text="Bitcoin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kc1-I6-5kx">
-                                        <rect key="frame" x="94.5" y="14" width="195.5" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                        <rect key="frame" x="94.5" y="11.5" width="195.5" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>

@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import ObjectMapper
 
+// Use this to `test` purpose
 class CoinMarketCapAPIMock: CoinMarketCapAPIProtocol {
     
     func coins(limit: Int) -> Single<[CoinAPI]> {
