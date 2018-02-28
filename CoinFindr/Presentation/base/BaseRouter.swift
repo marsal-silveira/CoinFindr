@@ -9,12 +9,12 @@
 import UIKit
 
 protocol RouterCallbackProtocol: class {
-    func shouldDismissPresentedWireFrame()
+    func shouldDismissPresentedRouter()
 }
 
 class BaseRouter: NSObject {
     
-    var presentedWireFrame: BaseRouter?
+    var presentedRouter: BaseRouter?
     weak var callback: RouterCallbackProtocol?
 
     deinit {
@@ -24,7 +24,7 @@ class BaseRouter: NSObject {
 
 extension BaseRouter: RouterCallbackProtocol {
     
-    func shouldDismissPresentedWireFrame() {
-        presentedWireFrame = nil
+    func shouldDismissPresentedRouter() {
+        presentedRouter = nil
     }
 }

@@ -48,8 +48,6 @@ class ContainerViewController: BaseViewController {
             if let oldViewController = oldValue {
                 
                 self.applyScreenTransition(newViewController: currentViewController, oldViewController: oldViewController)
-                // TODO: review this...
-                PresentationHelper.romePresentedModalsViewControllers()
             }
         }
     }

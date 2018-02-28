@@ -20,7 +20,7 @@ class ContainerRouter: BaseRouter {
     
     private let _viewController: ContainerViewController
     private let _presenter: ContainerPresenterProtocol
-    private var _childWireFrame: BaseRouter?
+    private var _childRouter: BaseRouter?
     
     private var _currentScreen: ContentScreen?
     
@@ -52,7 +52,7 @@ extension ContainerRouter: ContainerRouterProtocol {
         case .topCoins:
             let topCoinsRouter = TopCoinsRouter()
             _viewController.setCurrentViewController(topCoinsRouter.viewController)
-            _childWireFrame = topCoinsRouter
+            _childRouter = topCoinsRouter
         }
         
         _currentScreen = screen
